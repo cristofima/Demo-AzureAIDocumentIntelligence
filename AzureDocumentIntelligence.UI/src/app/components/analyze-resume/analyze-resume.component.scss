@@ -1,0 +1,61 @@
+.resume-container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.resume-header {
+  text-align: center;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.resume-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.resume-header p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.resume-section {
+  margin-bottom: 20px;
+}
+
+.resume-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.resume-section p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.education-item,
+.work-item,
+.project-item,
+.certification-item {
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 14px;
+}
+
+a {
+  color: #007ad9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

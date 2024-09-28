@@ -1,0 +1,147 @@
+<div class="flex flex-column gap-3 p-3">
+  <p-fileUpload
+    [auto]="true"
+    chooseLabel="Choose"
+    chooseIcon="pi pi-upload"
+    accept="image/*,.pdf"
+    customUpload="true"
+    maxFileSize="2000000"
+    (uploadHandler)="onFileSelected($event)"
+    (onRemove)="onRemoveFile()"
+  >
+  </p-fileUpload>
+
+  <div class="flex flex-row gap-3">
+    <p-button
+      icon="pi pi-send"
+      label="Analyze"
+      (onClick)="onSubmit()"
+      [loading]="isLoading"
+      [disabled]="!selectedFile"
+    ></p-button>
+
+    <p-button
+      icon="pi pi-file-pdf"
+      label="Export to PDF"
+      severity="success"
+      (onClick)="exportToPDF()"
+      [disabled]="!resume"
+    ></p-button>
+  </div>
+</div>
+
+<div #resumeSection class="resume-container" *ngIf="resume">
+  <div class="resume-header">
+    <h2>{{ resume.personalDetails.fullName | titlecase }}</h2>
+    <p>
+      {{ resume.personalDetails.email }} |
+      {{ resume.personalDetails.cellphone }} |
+      {{ resume.personalDetails.location }}
+    </p>
+    <p>{{ resume.personalDetails.summary }}</p>
+  </div>
+
+  @if (resume.socialNetworks.linkedIn || resume.socialNetworks.gitHub) {
+    <div class="resume-section">
+      <h3>Social Networks</h3>
+      <div class="flex flex-row gap-4">
+        @if (resume.socialNetworks.linkedIn) {
+          <p>
+            <i class="pi pi-linkedin"></i>&nbsp;
+            <a [href]="resume.socialNetworks.linkedIn">{{
+              resume.socialNetworks.linkedIn
+            }}</a>
+          </p>
+        }
+        @if (resume.socialNetworks.gitHub) {
+          <p>
+            <i class="pi pi-github"></i>&nbsp;
+            <a [href]="resume.socialNetworks.gitHub">{{
+              resume.socialNetworks.gitHub
+            }}</a>
+          </p>
+        }
+      </div>
+      <p></p>
+    </div>
+  }
+
+  @if (resume.education.length) {
+    <div class="resume-section">
+      <h3>Education</h3>
+      <div *ngFor="let education of resume.education" class="education-item">
+        <p>
+          <strong>{{ education.degree }}</strong
+          >, {{ education.school }} - {{ education.location }}
+        </p>
+        <p>{{ education.startDate | date }} - {{ education.endDate | date }}</p>
+      </div>
+    </div>
+  }
+
+  @if (resume.workExperience.length) {
+    <div class="resume-section">
+      <h3>Work Experience</h3>
+      <div *ngFor="let work of resume.workExperience" class="work-item">
+        <p>
+          <strong>{{ work.position }}</strong
+          >, {{ work.company }} - {{ work.location }}
+        </p>
+        <p>{{ work.startDate | date }} - {{ work.endDate | date }}</p>
+        <p>{{ work.description }}</p>
+      </div>
+    </div>
+  }
+
+  @if (resume.skills.length) {
+    <div class="resume-section">
+      <h3>Skills</h3>
+      <ul>
+        <li *ngFor="let skill of resume.skills">{{ skill }}</li>
+      </ul>
+    </div>
+  }
+
+  @if (resume.projects.length) {
+    <div class="resume-section">
+      <h3>Projects</h3>
+      <div *ngFor="let project of resume.projects" class="project-item">
+        <p>
+          <strong>{{ project.name }}</strong>
+        </p>
+        <p>{{ project.startDate | date }} - {{ project.endDate | date }}</p>
+        <p>{{ project.description }}</p>
+        <p>
+          <a [href]="project.url">{{ project.url }}</a>
+        </p>
+      </div>
+    </div>
+  }
+
+  @if (resume.certifications.length) {
+    <div class="resume-section">
+      <h3>Certifications</h3>
+      <div
+        *ngFor="let certification of resume.certifications"
+        class="certification-item"
+      >
+        <p>
+          <strong>{{ certification.name }}</strong> -
+          {{ certification.issuingOrganization }}
+        </p>
+        <p>{{ certification.issueDate | date }}</p>
+      </div>
+    </div>
+  }
+
+  @if (resume.languages.length) {
+    <div class="resume-section">
+      <h3>Languages</h3>
+      <ul>
+        <li *ngFor="let language of resume.languages">
+          {{ language.name }} ({{ language.level }})
+        </li>
+      </ul>
+    </div>
+  }
+</div>
