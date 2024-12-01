@@ -36,7 +36,7 @@ export interface WorkExperience {
   location: string;
   startDate?: Date;
   endDate?: Date;
-  description: string;
+  activities: string[];
 }
 
 export interface Project {

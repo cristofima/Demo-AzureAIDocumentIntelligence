@@ -87,8 +87,10 @@
           <strong>{{ work.position }}</strong
           >, {{ work.company }} - {{ work.location }}
         </p>
-        <p>{{ work.startDate | date }} - {{ work.endDate | date }}</p>
-        <p>{{ work.description }}</p>
+        <p>{{ work.startDate | date }} - {{ work.endDate ? (work.endDate | date) : 'Present' }}</p>
+        <ul *ngIf="work.activities.length">
+          <li *ngFor="let act of work.activities">{{ act }}</li>
+        </ul>
       </div>
     </div>
   }
@@ -109,7 +111,7 @@
         <p>
           <strong>{{ project.name }}</strong>
         </p>
-        <p>{{ project.startDate | date }} - {{ project.endDate | date }}</p>
+        <p>{{ project.startDate | date }} - {{ project.endDate ? (project.endDate | date) : 'Present' }}</p>
         <p>{{ project.description }}</p>
         <p>
           <a [href]="project.url">{{ project.url }}</a>
