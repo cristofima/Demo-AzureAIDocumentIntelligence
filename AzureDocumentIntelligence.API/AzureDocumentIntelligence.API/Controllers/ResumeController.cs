@@ -7,6 +7,7 @@ namespace AzureDocumentIntelligence.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class ResumeController : ControllerBase
     {
         private readonly IAzureDocumentIntelligenceService azureDocumentIntelligenceService;

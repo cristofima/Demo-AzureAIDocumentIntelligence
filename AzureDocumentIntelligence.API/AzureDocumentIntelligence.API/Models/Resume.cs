@@ -37,7 +37,7 @@
         public string Location { get; set; }
         public DateOnly? StartDate { get; set; }
         public DateOnly? EndDate { get; set; }
-        public string Description { get; set; }
+        public List<string> Activities { get; set; }
     }
 
     public class SocialNetworks
