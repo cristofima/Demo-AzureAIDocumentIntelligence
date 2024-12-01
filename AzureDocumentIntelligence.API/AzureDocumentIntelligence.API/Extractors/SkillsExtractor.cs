@@ -1,6 +1,7 @@
 ﻿using Azure.AI.FormRecognizer.DocumentAnalysis;
 using AzureDocumentIntelligence.API.Interfaces;
 using AzureDocumentIntelligence.API.Models;
+using AzureDocumentIntelligence.API.Utils;
 
 namespace AzureDocumentIntelligence.API.Extractors;
 
@@ -32,12 +33,7 @@ public class SkillsExtractor : IFieldExtractor
                             switch (subFieldName)
                             {
                                 case "Name":
-                                    var skills = subFieldValue.Value.AsString()
-                                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                                        .Select(s => s.Trim()).ToList()
-                                        .Where(skill => !string.IsNullOrWhiteSpace(skill))
-                                        .ToList();
-
+                                    var skills = StringUtil.SplitText(subFieldValue.Value.AsString(), ",");
                                     resume.Skills.AddRange(skills);
                                     break;
 

@@ -44,7 +44,7 @@ namespace AzureDocumentIntelligence.API.Extractors
                                         workExperience.Location = subFieldValue.Value.AsString();
                                         break;
                                     case "Description":
-                                        workExperience.Description = subFieldValue.Value.AsString();
+                                        workExperience.Activities = StringUtil.SplitText(subFieldValue.Value.AsString(), ["\n", "\r\n"]);
                                         break;
                                     case "StartDate":
                                         workExperience.StartDate = DateUtil.ParseDate(subFieldValue);

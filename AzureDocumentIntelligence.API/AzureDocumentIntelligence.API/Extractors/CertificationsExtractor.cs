@@ -35,7 +35,15 @@ namespace AzureDocumentIntelligence.API.Extractors
                                 switch (subFieldName)
                                 {
                                     case "Name":
-                                        certification.Name = subFieldValue.Value.AsString();
+                                        var list = StringUtil.SplitText(subFieldValue.Value.AsString(), ",");
+                                        certification.Name = list[0];
+                                        if (list.Count > 1)
+                                        {
+                                            for (int i = 1; i < list.Count; i++)
+                                            {
+                                                certifications.Add(new() { Name = list[i] });
+                                            }
+                                        }
                                         break;
 
                                     case "IssuingOrganization":
